@@ -29,12 +29,10 @@ void HDFC::withdraw(){
 
 }
 void HDFC::showData(){
-    
+
 }
 
 int main(){
-    float acc_balance;
-    cin>>acc_balance;
-    cout<<acc_balance;
+    
     return 0;
 }
