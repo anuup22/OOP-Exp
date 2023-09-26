@@ -48,7 +48,7 @@ public:
 
 int main() {
     // Create an object of the BankAccount class
-    BankAccount myAccount("John Doe", 12345, "Savings", 1000.0);
+    BankAccount myAccount("Anup Gupta", 12345, "Savings", 1000.0);
 
     // Display account information
     myAccount.display();
