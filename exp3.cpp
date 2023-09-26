@@ -9,7 +9,12 @@ private:
     int centimeters;
 
 public:
-    DM(int m, int cm) : meters(m), centimeters(cm) {}
+    DM(int m, int cm) {
+        meters = m;
+        centimeters = cm;
+    }
+    //another way to assign values to the variables
+    // DM(int m, int cm) : meters(m), centimeters(cm) {}
 
     // Friend function to add DM and DB objects
     friend DM addDistance(DM d1, DB d2);
@@ -25,7 +30,12 @@ private:
     int inches;
 
 public:
-    DB(int ft, int in) : feet(ft), inches(in) {}
+    DB(int ft, int in) {
+        feet = ft;
+        inches = in;
+    }
+    //another way to assign values
+    //DB(int ft, int in) : feet(ft), inches(in) {}
 
     // Friend function to add DM and DB objects
     friend DM addDistance(DM d1, DB d2);
