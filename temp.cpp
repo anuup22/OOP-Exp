@@ -1,38 +1,33 @@
 #include<iostream>
 using namespace std;
 
-class bank{
-    string name;
-    int acc_no;
-    string type;
-
-    public:
-    void setdata(){
-        cout<<"enter the name : ";
-        cin>>name;
-
-        cout<<"enter acc no ";
-        cin>>acc_no;
-
-        cout<<"enter the type";
-        cin>>type;
-
-    void getdata(){
-        cout<<"account name : "<<name<<endl;
-        cout<<"account number is : "<<acc_no<<endl;
-        cout<<"account type is : "<<type<<endl;
-
-
-    };
-
-
-    }
-
+double area(int rad){
+    double temp = 3.14*rad*rad;
+    return temp;
 }
+
+double area(int b, int h){
+    double temp = 0.5*b*h;
+    return temp;
+}
+
 int main(){
-    
-    bank b1;
-    b1.setdata();
-    b1.getdata();
+
+    //for circle
+    double radius;
+    cout<<"Enter radius for circle: ";
+    cin>>radius;
+
+    int base;
+    int height;
+    cout<<"Enter base: ";
+    cin>>base;
+    cout<<"Enter height: ";
+    cin>>height;
+
+    cout<<area(radius)<<endl;
+    cout<<area(base, height)<<endl;
+
+
     return 0;
 }
