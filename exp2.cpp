@@ -48,18 +48,18 @@ public:
 
 int main() {
     // Create an object of the BankAccount class
-    BankAccount myAccount("Anup Gupta", 12345, "Savings", 1000.0);
+    BankAccount cust1("Anup Gupta", 12345, "Savings", 1000.0);
 
     // Display account information
-    myAccount.display();
+    cust1.display();
 
     // Deposit and withdraw some amounts
-    myAccount.deposit(500.0);
-    myAccount.withdraw(200.0);
-    myAccount.withdraw(1500.0); // Should display an error message
+    cust1.deposit(500.0);
+    cust1.withdraw(200.0);
+    cust1.withdraw(1500.0); // Should display an error message
 
     // Display updated account information
-    myAccount.display();
+    cust1.display();
 
     return 0;
 }
