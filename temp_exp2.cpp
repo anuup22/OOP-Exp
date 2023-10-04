@@ -1,77 +1,82 @@
 #include<iostream>
 using namespace std;
 
-class HDFC{
+class Bank{
+    private:
+
     string name;
-    string acc_num;
+    long int acc_num;
     string type;
-    double balance = 0;
+    double balance; 
 
     public:
-    void setData(){
+
+    void assign(){
         cout<<"Enter your name: ";
         cin>>name;
 
-        cout<<"Enter acc number: ";
+        cout<<"Enter your acc number: ";
         cin>>acc_num;
 
-        cout<<"Enter acc type: ";
-        cin>>type;      
-    }
+        cout<<"Enter your acc type: ";
+        cin>>type;
 
+        cout<<"Enter your initial balance: ";
+        cin>>balance;        
+    }  
     void deposite(){
-        double dep;
+        int dep;
         cout<<"Enter amount to deposite: ";
         cin>>dep;
 
-        cout<<"Successfully deposited "<<dep<<" rupees "<<endl;
-        balance = balance + dep;
-
-        cout<<"Your current balance is "<<balance<<" rupees"<<endl;
-    }
-
-    void withdraw(){
-        double with;
-        cout<<"Enter amount to withdraw: ";
-        cin>>with;
-
-        if(with>balance){
-            cout<<"Insufficient balance "<<endl;
+        if(dep<0){
+            cout<<"Invailid input :("<<endl;
+            // return;
         }
         else{
-            cout<<"Successfully withdrawn "<<with<<" rupees "<<endl;
-            balance = balance - with;
-
-            cout<<"Your current balance is "<<balance<<" rupees"<<endl;
-        }  
+            balance = balance + dep;
+        }    
     }
+    void withdraw(){
+        int w;
+        cout<<"Enter amount to withdraw: ";
+        cin>>w;
 
-    void checkBalance(){
-        cout<<"your account balance is "<<balance<<endl;
+        if(w>balance){
+            cout<<"Insufficient balance :(";
+        }
+        else{
+            balance = balance - w;
+        }
     }
-    
     void display(){
-        cout<<"\n\nHello "<<name<<" , your details are:-"<<endl<<endl<<endl;
+        cout<<"\n Your details are:-"<<endl<<endl<<endl;
+
         cout<<"Name: "<<name<<endl;
-        cout<<"Account Number: "<<acc_num<<endl;
+        cout<<"Account number: "<<acc_num<<endl;
         cout<<"Account type: "<<type<<endl;
         cout<<"Balance: "<<balance<<endl;
+
+        cout<<"\nThank you :)"<<endl;
     }
 };
 
 
 int main(){
-    
-    HDFC cust1;
 
-    cust1.setData();
-    cust1.deposite();
-    cust1.checkBalance();
-    cust1.withdraw();
-    cust1.display();
+    Bank cust2;
 
+    cust2.assign();
 
-    return 0;
+    cust2.deposite();
+
+    cust2.withdraw();
+
+    cust2.display();
+
+    // 
+
+    // cust2.display();
+ 
 }
-
 
