@@ -1,69 +1,106 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class MAT {
-    int a[2][2];
+private:
+    int m; // Number of rows
+    int n; // Number of columns
+    vector<vector<double>> matrix; // 2D vector to store the matrix elements
 
 public:
-    void accept(){
-        cout << "\n\n Enter 4 element : ";
-        for (int i = 0; i < 2; i++){
-            for (int j = 0; j < 2; j++){
-                cin >> a[i][j];
+    //ructor to initialize the matrix with given dimensions (read about member initializer function)
+    MAT(int rows, int columns) : m(rows), n(columns), matrix(rows, vector<double>(columns, 0.0)) {}
+
+    // Function to input values into the matrix
+    void inputMatrix() {
+        cout << "Enter matrix elements:" << endl;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                cout << "Enter element at position (" << i + 1 << ", " << j + 1 << "): ";
+                cin >> matrix[i][j];
             }
-                
         }
     }
 
-    MAT operator+(MAT M2){
-        MAT M3;
-        for (int i = 0; i < 2; i++){
-            for (int j = 0; j < 2; j++){
-                M3.a[i][j] = a[i][j] + M2.a[i][j];
+    // Function to display the matrix
+    void displayMatrix() {
+        cout << "Matrix:" << endl;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                cout << matrix[i][j] << "\t";
             }
+            cout << endl;
         }
-        return M3;
     }
 
-    MAT operator*(MAT M2){
-        MAT M3;
-        for (int i = 0; i < 2; i++){
-            for (int j = 0; j < 2; j++){
-                M3.a[i][j] = 0;
-                for (int k = 0; k < 2; k++){
-                    M3.a[i][j] = (a[i][k] * M2.a[k][j]) + M3.a[i][j];
+    // Function to add two matrices
+    MAT add(MAT other) {
+        if (m != other.m || n != other.n) {
+            cout << "Error: Matrices must have the same dimensions for addition." << endl;
+            return MAT(0, 0); // Return an empty matrix
+        }
+
+        MAT result(m, n);
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                result.matrix[i][j] = matrix[i][j] + other.matrix[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    // Function to multiply two matrices
+    MAT multiply(MAT other) {
+        if (n != other.m) {
+            cout << "Error: Number of columns in the first matrix must be equal to the number of rows in the second matrix for multiplication." << endl;
+            return MAT(0, 0); // Return an empty matrix
+        }
+
+        MAT result(m, other.n);
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < other.n; ++j) {
+                for (int k = 0; k < n; ++k) {
+                    result.matrix[i][j] += matrix[i][k] * other.matrix[k][j];
                 }
             }
         }
-        return M3;
-    }
 
-    void display(){
-        for (int i = 0; i < 2; i++){
-            cout << endl;
-            for (int j = 0; j < 2; j++){
-                cout << "  " << a[i][j];
-            }     
-        }
+        return result;
     }
 };
 
-int main(){
-    MAT M1, M2, M3;
+int main() {
+    // Example usage of the MAT class
+    int m, n;
+    cout << "Enter the number of rows for the first matrix: ";
+    cin >> m;
+    cout << "Enter the number of columns for the first matrix: ";
+    cin >> n;
 
-    cout << "\n\n Enter Matrix M1 value: ";
-    M1.accept();
+    MAT mat1(m, n);
+    mat1.inputMatrix();
 
-    cout << "\n\n Enter Matrix M2 value: ";
-    M2.accept();
+    cout << "Enter the number of rows for the second matrix: ";
+    cin >> m;
+    cout << "Enter the number of columns for the second matrix: ";
+    cin >> n;
 
-    M3 = M1 + M2;
-    cout << "\n\n Addition of M1+M2 : ";
-    M3.display();
+    MAT mat2(m, n);
+    mat2.inputMatrix();
 
-    M3 = M1 * M2;
-    cout << "\n\n Multiplication of M1*M2 : ";
-    M3.display();
+    // Display the input matrices
+    mat1.displayMatrix();
+    mat2.displayMatrix();
+
+    // Perform matrix addition
+    MAT additionResult = mat1.add(mat2);
+    additionResult.displayMatrix();
+
+    // Perform matrix multiplication
+    MAT multiplicationResult = mat1.multiply(mat2);
+    multiplicationResult.displayMatrix();
 
     return 0;
 }
